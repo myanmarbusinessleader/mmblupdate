@@ -22,12 +22,14 @@ class FilterRowWidget extends StatelessWidget {
       child: Row(
         children: [
           CustomElevatedButton(
+
+
             text: leadingText,
-            width: 95,
+            width: 120,
             buttonPressed: (){},
             isPressEnable: false,
             ),
-          const SizedBox(width: 5,),
+          const SizedBox(width: 10),
            Expanded(
             child: InkWell(
               onTap: buttonPressed,

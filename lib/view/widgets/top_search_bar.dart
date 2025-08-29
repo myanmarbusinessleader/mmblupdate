@@ -26,7 +26,7 @@ class TopSearchBar extends StatelessWidget {
         children: [
           IconButton(
             onPressed: (){}, 
-            icon: const Icon(Icons.search,color: Colors.black,size: 35)
+            icon: const Icon(Icons.search,color: Colors.white,size: 30)
             ),
           //TextField
           Expanded(

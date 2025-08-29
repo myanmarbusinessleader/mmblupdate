@@ -47,11 +47,12 @@ class _BusinessFilterScreenState extends State<BusinessFilterScreen> {
       child: Scaffold(
         appBar: AppBar(
           elevation: 0,
-          iconTheme: const IconThemeData(color: Colors.white, size: 35),
+          iconTheme: const IconThemeData(color: Colors.white, size: 25),
           centerTitle: true,
           title: Text(
             _controller.category.value,
-            style: const TextStyle(color: Colors.white),
+            style: const TextStyle(color: Colors.white,
+            fontSize: 18),
           ),
         ),
         body: Column(

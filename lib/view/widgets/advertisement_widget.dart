@@ -6,6 +6,7 @@ import 'package:mmbl/constant/constant.dart';
 import 'package:mmbl/model/advertisement.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:getwidget/getwidget.dart';
+import 'package:skeletonizer/skeletonizer.dart';
 
 class AdvertisementWidget extends StatefulWidget {
   const AdvertisementWidget({super.key});
@@ -48,9 +49,29 @@ class _AdvertisementWidgetState extends State<AdvertisementWidget> {
     final width = MediaQuery.of(context).size.width;
     return isLoading
         ? AspectRatio(
-          aspectRatio: 16 / 9,
-          child: Center(child: CupertinoActivityIndicator()),
-        )
+            aspectRatio: 16 / 9,
+            child: Skeletonizer(
+              enabled: true,
+              child: Container(
+                width: double.infinity,
+                height: double.infinity,
+                decoration: BoxDecoration(
+                  color: Colors.grey[300],
+                  borderRadius: BorderRadius.circular(12),
+                ),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Container(
+                      width: width * 0.8,
+                      height: (width * 0.8) / 16 * 9,
+                      color: Colors.grey[300],
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          )
         : advertisementList.isEmpty
         ? const SizedBox()
         : Padding(

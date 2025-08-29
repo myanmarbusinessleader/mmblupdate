@@ -71,11 +71,16 @@ class FilterSearch extends StatelessWidget {
               )),
           //Search Button
           Padding(
-            padding: const EdgeInsets.only(left: 20, right: 20),
+            padding: const EdgeInsets.all(15),
             child: SizedBox(
               width: double.infinity,
+              height: 45,
               child: ElevatedButton(
+
                 style: ElevatedButton.styleFrom(
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10),
+                  ),
                   backgroundColor: Colors.black,
                 ),
                 onPressed: () {

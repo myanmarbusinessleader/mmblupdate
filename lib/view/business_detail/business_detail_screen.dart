@@ -14,16 +14,18 @@ class BusinessDetailScreen extends StatelessWidget {
     final FilterFormController _controller = Get.find();
     final bL = _controller.selectedBL!;
     return DefaultTabController(
-      length: 3, 
+      length: 3,
       child: Scaffold(
         appBar:  AppBar(
             elevation: 0,
-            iconTheme: const IconThemeData(color: Colors.white,size: 35,),
+            iconTheme: const IconThemeData(color: Colors.white,size: 20,),
             centerTitle: true,
             title:  Text(bL.name,
-            style: const TextStyle(color: Colors.white,)),
+            style: const TextStyle(color: Colors.white,
+            fontSize: 20)),
             bottom: const TabBar(
-              unselectedLabelColor: Colors.grey,
+              unselectedLabelColor: Colors.black54,
+              indicatorColor: Colors.white,
               labelColor: Colors.white,
               tabs: [
                 Tab(

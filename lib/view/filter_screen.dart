@@ -30,10 +30,11 @@ class _FilterScreenState extends State<FilterScreen> {
     return Scaffold(
       appBar:  AppBar(
           elevation: 0,
-          iconTheme: const IconThemeData(color: Colors.white,size: 35,),
+          iconTheme: const IconThemeData(color: Colors.white,size: 25),
           centerTitle: true,
           title:  Text(widget.appBarTitle,
-          style: const TextStyle(color: Colors.white,)),
+          style: const TextStyle(color: Colors.white,
+          fontSize: 16)),
         ),
       body: Column(
         children: [

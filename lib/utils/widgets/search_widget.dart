@@ -20,8 +20,8 @@ class SearchWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       color: Colors.amber,
-      padding: const EdgeInsets.only(left: 25,top: 10,right: 20,),
-      height: 70,
+      padding: const EdgeInsets.symmetric(horizontal: 20),
+      height: 100,
       width: size.width,
       child: Row(
     mainAxisAlignment: MainAxisAlignment.start,
@@ -29,14 +29,15 @@ class SearchWidget extends StatelessWidget {
     children: [
       IconButton(
         onPressed: (){}, 
-        icon: const Icon(Icons.search,color: Colors.black,size: 35)
+        icon: const Icon(Icons.search,color: Colors.white,size: 25,
+        )
         ),
       //TextField
       Expanded(
         child: TextField(
         cursorColor: Colors.white,
         style: const TextStyle(color: Colors.white,
-        fontSize: 14,),
+        fontSize: 18),
         onChanged: (value){
           debouncer.run(() {
             onChanged(value);

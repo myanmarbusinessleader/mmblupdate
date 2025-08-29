@@ -26,6 +26,7 @@ class EmergencyView extends StatelessWidget {
                 ),
                 Column(
                   mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(emergency.mmName,
                     style: Theme.of(context).
@@ -37,7 +38,7 @@ class EmergencyView extends StatelessWidget {
                   ],
                 ),
                 IconButton(
-                  onPressed: () => makePhoneCall("099898"), 
+                  onPressed: () => makePhoneCall("191"),
                   icon: const Icon(Icons.phone,color: Colors.white,size: 35),
                 ),
               ],
