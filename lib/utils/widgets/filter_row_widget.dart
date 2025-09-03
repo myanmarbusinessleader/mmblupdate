@@ -12,8 +12,8 @@ class FilterRowWidget extends StatelessWidget {
     required this.value,
     required this.buttonPressed,
     required this.returnData,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {

@@ -1,6 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:mmbl/model/image_item.dart';
-
 part 'business_listing.freezed.dart';
 part 'business_listing.g.dart';
 
@@ -14,8 +13,7 @@ class BusinessListing with _$BusinessListing {
     String? email,
     String? website,
     required String businessAddress,
-    @JsonKey(nullable: true,defaultValue: "All States")
-    String? state,
+    @JsonKey(nullable: true, defaultValue: "All States") String? state,
     required String township,
     required String categoryID,
     required String contactPersonName,
@@ -28,6 +26,6 @@ class BusinessListing with _$BusinessListing {
     required DateTime dateTime,
   }) = _BusinessListing;
 
-  factory BusinessListing.fromJson(Map<String,dynamic> json) => _$BusinessListingFromJson(json);
-
+  factory BusinessListing.fromJson(Map<String, dynamic> json) =>
+      _$BusinessListingFromJson(json);
 }

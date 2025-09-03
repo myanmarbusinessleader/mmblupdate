@@ -4,16 +4,16 @@ import 'package:mmbl/constant/emergency.dart';
 import '../../utils/other/intent_method.dart';
 
 class EmergencyView extends StatelessWidget {
-  const EmergencyView({Key? key}) : super(key: key);
+  const EmergencyView({super.key});
 
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
       itemCount: emergencyList.length,
-      itemBuilder: (context,index){
+      itemBuilder: (context, index) {
         final emergency = emergencyList[index];
         return Padding(
-          padding: const EdgeInsets.only(left: 10,right: 10,top: 5),
+          padding: const EdgeInsets.only(left: 10, right: 10, top: 5),
           child: Container(
             color: Colors.red,
             height: 150,
@@ -22,30 +22,40 @@ class EmergencyView extends StatelessWidget {
               children: [
                 CircleAvatar(
                   radius: 50,
-                  backgroundImage: NetworkImage(emergency.image),
+                  child: Image.asset(
+                    emergency.image,
+                    fit: BoxFit.contain,
+                    width: 60,
+                  ),
                 ),
                 Column(
                   mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    Text(emergency.mmName,
-                    style: Theme.of(context).
-                    textTheme.titleLarge?.copyWith(color: Colors.white),),
-                    Text(emergency.enName,
-                    style: Theme.of(context).
-                    textTheme.titleLarge?.copyWith(color: Colors.white),),
-                   
+                    Text(
+                      emergency.mmName,
+                      textAlign: TextAlign.center,
+                      style: Theme.of(
+                        context,
+                      ).textTheme.titleMedium?.copyWith(color: Colors.white),
+                    ),
+                    Text(
+                      emergency.enName,
+                      style: Theme.of(
+                        context,
+                      ).textTheme.titleLarge?.copyWith(color: Colors.white),
+                    ),
                   ],
                 ),
                 IconButton(
-                  onPressed: () => makePhoneCall("191"),
-                  icon: const Icon(Icons.phone,color: Colors.white,size: 35),
+                  onPressed: () => makePhoneCall(emergency.phone),
+                  icon: const Icon(Icons.phone, color: Colors.white, size: 35),
                 ),
               ],
             ),
           ),
         );
-      }
-      );
+      },
+    );
   }
 }

@@ -1,13 +1,14 @@
 import 'package:animate_do/animate_do.dart';
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:get/get.dart';
-import 'package:mmbl/constant/constant.dart';
 import 'package:mmbl/controller/filter_form_controller.dart';
 import 'package:mmbl/view/tab_bar_view/categories_view.dart';
 import 'package:mmbl/view/tab_bar_view/emergency_view.dart';
 import 'package:mmbl/view/tab_bar_view/home_view.dart';
 import 'package:mmbl/view/tab_bar_view/search_view.dart';
+
+import '../utils/other/intent_method.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -23,6 +24,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
   @override
   void initState() {
     super.initState();
+    FlutterNativeSplash.remove();
     tabController = TabController(length: 4, vsync: this);
     tabController.addListener(() {
       controller.changeTabIndex(tabController.index);
@@ -38,74 +40,68 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
   void _showAdvertiseDialog(BuildContext context) {
     showDialog(
       context: context,
-      builder: (context) => ZoomIn(
-        duration: const Duration(milliseconds: 400),
-        child: AlertDialog(
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(16),
-          ),
-          title: BounceInDown(
-            duration: const Duration(milliseconds: 500),
-            child: Center(
-              child: const Text(
-                "Advertise with us",
-                style: TextStyle(
-                  fontSize: 18,
-                  fontWeight: FontWeight.w600,
-                  color: Colors.amber,
-                ),
+      builder:
+          (context) => ZoomIn(
+            duration: const Duration(milliseconds: 400),
+            child: AlertDialog(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(16),
               ),
-            ),
-          ),
-          content: FadeInUp(
-            duration: const Duration(milliseconds: 600),
-            child: const Text(
-              "Contact us to place your advertisement!",
-              style: TextStyle(
-                fontSize: 16,
-                color: Colors.black87,
-              ),
-            ),
-          ),
-          actions: [
-            ElasticIn(
-              duration: const Duration(milliseconds: 700),
-              child: TextButton.icon(
-                onPressed: () {
-                  debugPrint("Initiate phone call");
-                  Navigator.pop(context);
-                  // TODO: Implement phone call functionality
-                },
-                icon: const Icon(
-                  Icons.phone,
-                  color: Colors.white,
-                ),
-                label: const Text(
-                  "Call Now",
-                  style: TextStyle(color: Colors.white),
-                ),
-                style: TextButton.styleFrom(
-                  backgroundColor: Colors.amber.shade700,
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 16,
-                    vertical: 8,
-                  ),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(8),
+              title: BounceInDown(
+                duration: const Duration(milliseconds: 500),
+                child: Center(
+                  child: const Text(
+                    "Advertise with us",
+                    style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.w600,
+                      color: Colors.amber,
+                    ),
                   ),
                 ),
               ),
-            ),
-            TextButton(
-              onPressed: () => Navigator.pop(context),
-              child: const Text(
-                "Cancel",
-                style: TextStyle(color: Colors.grey),
+              content: FadeInUp(
+                duration: const Duration(milliseconds: 600),
+                child: const Text(
+                  "Contact us to place your advertisement!",
+                  style: TextStyle(fontSize: 16, color: Colors.black87),
+                ),
               ),
+              actions: [
+                ElasticIn(
+                  duration: const Duration(milliseconds: 700),
+                  child: TextButton.icon(
+                    onPressed: () {
+                      makePhoneCall("09976947648");
+                      //Navigator.pop(context);
+                    },
+                    icon: const Icon(Icons.phone, color: Colors.white),
+                    label: const Text(
+                      "Call Now",
+                      style: TextStyle(color: Colors.white),
+                    ),
+                    style: TextButton.styleFrom(
+                      backgroundColor: Colors.amber.shade700,
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 16,
+                        vertical: 8,
+                      ),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                    ),
+                  ),
+                ),
+                TextButton(
+                  onPressed: () => Navigator.pop(context),
+                  child: const Text(
+                    "Cancel",
+                    style: TextStyle(color: Colors.grey),
+                  ),
+                ),
+              ],
             ),
-          ],
-        ),
-      ),
+          ),
     );
   }
 
@@ -183,29 +179,19 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                     width: double.infinity,
                     height: size.height * 0.25,
                     decoration: BoxDecoration(
-                      border: Border.all(color: Colors.amber.shade300, width: 2),
-                      borderRadius:
-                      const BorderRadius.vertical(bottom: Radius.circular(16)),
+                      border: Border.all(
+                        color: Colors.amber.shade300,
+                        width: 2,
+                      ),
+                      borderRadius: const BorderRadius.vertical(
+                        bottom: Radius.circular(16),
+                      ),
                     ),
                     child: ClipRRect(
-                      borderRadius:
-                      const BorderRadius.vertical(bottom: Radius.circular(16)),
-                      child: CachedNetworkImage(
-                        imageUrl: companyLogo,
-                        fit: BoxFit.cover,
-                        placeholder: (context, url) => Container(
-                          color: Colors.grey[200],
-                          child: const Center(child: CircularProgressIndicator()),
-                        ),
-                        errorWidget: (context, url, error) => Container(
-                          color: Colors.grey[200],
-                          child: const Icon(
-                            Icons.broken_image,
-                            color: Colors.grey,
-                            size: 50,
-                          ),
-                        ),
+                      borderRadius: const BorderRadius.vertical(
+                        bottom: Radius.circular(16),
                       ),
+                      child: Image.asset("assets/logo.png", fit: BoxFit.cover),
                     ),
                   ),
                 ),
@@ -271,11 +257,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
           ),
           child: ElasticIn(
             duration: const Duration(milliseconds: 600),
-            child: const Icon(
-              Icons.phone,
-              color: Colors.white,
-              size: 28,
-            ),
+            child: const Icon(Icons.phone, color: Colors.white, size: 28),
           ),
         ),
       ),
@@ -297,11 +279,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
           highlightColor: Colors.blue.shade100.withOpacity(0.3),
           splashColor: Colors.blue.shade200.withOpacity(0.5),
           child: ListTile(
-            leading: Icon(
-              icon,
-              size: 30,
-              color: Colors.blue.shade700,
-            ),
+            leading: Icon(icon, size: 30, color: Colors.blue.shade700),
             title: Text(
               title,
               style: TextStyle(

@@ -19,7 +19,7 @@ class SearchView extends StatelessWidget {
               //TopSearchBar Enteprise Name
               TopSearchBar(size: size, controller: controller),
               //FilterSearch
-              FilterSearch(controller: controller),
+              FilterSearch(),
             ],
           ),
         ),

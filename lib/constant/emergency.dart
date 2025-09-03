@@ -2,9 +2,27 @@ import 'package:mmbl/model/emergency.dart';
 
 final emergencyList = [
   Emergency(
-    mmName: "မီးသတ်", 
-    enName: "Fire Station", 
-    image: "https://png.pngtree.com/png-clipart/20190116/ourmid/pngtree-hand-drawn-fire-illustration-creative-fire-illustration-popular-knowledge-of-fire-png-image_398209.jpg",
-    phone: "09989809898"
-    ),
+    mmName: "ရဲတပ်ဖွဲ့",
+    enName: "Police Station",
+    image: "assets/police-station.png",
+    phone: "199",
+  ),
+  Emergency(
+    mmName: "မီးသတ်",
+    enName: "Fire Station",
+    image: "assets/fire-truck.png",
+    phone: "191",
+  ),
+  Emergency(
+    mmName: "အရေးပေါ်",
+    enName: "Ambulance",
+    image: "assets/ambulance.png",
+    phone: "192",
+  ),
+  Emergency(
+    mmName: "ကြေငြာထည့်ပါ",
+    enName: "MBL",
+    image: "assets/logo.jpg",
+    phone: "09976947648",
+  ),
 ];

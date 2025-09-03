@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:mmbl/controller/filter_form_controller.dart';
 
 import '../../utils/other/debounce.dart';
 import '../../utils/widgets/search_widget.dart';
@@ -16,27 +14,20 @@ class CategoriesView extends StatefulWidget {
 class _CategoriesViewState extends State<CategoriesView> {
   String? searchValue;
   final debouncer = Debouncer(milliseconds: 500);
- 
+
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-    final FilterFormController controller = Get.find();
-    return Column(
-      children: [
-        //
-        SearchWidget(
-          size: size, 
-          hintText: "လုပ်ငန်းအမျိုးအစားအမည်",
-        debouncer: debouncer,
-        onChanged: (value){
-          setState(() {
-            searchValue = value;
-          });
-        },),
-        //ResultList
-        CaregorySearchList(controller: controller, searchValue: searchValue),
-      ],
+    return SizedBox(
+      height: size.height,
+      child: Column(
+        children: [
+          //
+          SearchWidget(size: size, hintText: "လုပ်ငန်းအမျိုးအစားအမည်"),
+          //ResultList
+          const CaregorySearchList(),
+        ],
+      ),
     );
   }
 }
-

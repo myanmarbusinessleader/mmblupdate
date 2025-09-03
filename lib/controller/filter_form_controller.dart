@@ -28,12 +28,16 @@ class FilterFormController extends GetxController {
   BusinessListing? selectedBL;
   BusinessListing? editedBL;
 
+  var searchValue = "".obs;
+
+  void changeSearchValue(String value) => searchValue.value = value;
+
   @override
   void onInit() {
     signInAnonymus();
 
     listenCategories();
-    listenBusinesses();
+    /*  listenBusinesses(); */
     super.onInit();
   }
 
@@ -65,7 +69,7 @@ class FilterFormController extends GetxController {
   void setEditedBL(BusinessListing b) => editedBL = b;
   void changeCategory(String value) {
     category.value = value;
-    searchBusinessByCateogry(value);
+    //searchBusinessByCateogry(value);
   }
 
   void changeState(String value) => state.value = value;

@@ -20,8 +20,10 @@ Widget businessMap({
   bool initCurrentUserPosition = true,
 }) {
   assert(title == null || titleWidget == null);
-  assert((initCurrentUserPosition && initPosition == null) ||
-      !initCurrentUserPosition && initPosition != null);
+  assert(
+    (initCurrentUserPosition && initPosition == null) ||
+        !initCurrentUserPosition && initPosition != null,
+  );
   final MapController controller = MapController(
     initMapWithUserPosition: UserTrackingOption(enableTracking: true),
     initPosition: initPosition,
@@ -51,10 +53,7 @@ Widget businessMap({
 
 class BusinessLocationMap extends StatefulWidget {
   final GeoPoint initPosition;
-  const BusinessLocationMap({
-    Key? key,
-    required this.initPosition,
-  }) : super(key: key);
+  const BusinessLocationMap({super.key, required this.initPosition});
 
   @override
   State<BusinessLocationMap> createState() => _BusinessLocationMapState();
@@ -65,44 +64,45 @@ class _BusinessLocationMapState extends State<BusinessLocationMap> {
 
   @override
   Widget build(BuildContext context) {
-    final MapController controller = widget.initPosition != null
-        ? MapController(initPosition: widget.initPosition)
-        : MapController(initMapWithUserPosition: UserTrackingOption(enableTracking: true));
+    final MapController controller = MapController(
+      initPosition: widget.initPosition,
+    );
     return SizedBox(
       height: MediaQuery.of(context).size.height * 0.5,
       width: MediaQuery.of(context).size.width * 0.9,
-      child: isLoading
-          ? Skeletonizer(
-              enabled: true,
-              child: Container(
-                height: MediaQuery.of(context).size.height * 0.5,
-                width: MediaQuery.of(context).size.width * 0.9,
-                decoration: BoxDecoration(
-                  color: Colors.grey[300],
-                  borderRadius: BorderRadius.circular(16),
+      child:
+          isLoading
+              ? Skeletonizer(
+                enabled: true,
+                child: Container(
+                  height: MediaQuery.of(context).size.height * 0.5,
+                  width: MediaQuery.of(context).size.width * 0.9,
+                  decoration: BoxDecoration(
+                    color: Colors.grey[300],
+                    borderRadius: BorderRadius.circular(16),
+                  ),
                 ),
-              ),
-            )
-          : OSMFlutter(
-              osmOption: OSMOption(
-                showZoomController: true,
-                isPicker: true,
-                zoomOption: ZoomOption(
-                  stepZoom: 1,
-                  initZoom: 10,
-                  minZoomLevel: 2,
-                  maxZoomLevel: 18,
+              )
+              : OSMFlutter(
+                osmOption: OSMOption(
+                  showZoomController: true,
+                  isPicker: true,
+                  zoomOption: ZoomOption(
+                    stepZoom: 1,
+                    initZoom: 10,
+                    minZoomLevel: 2,
+                    maxZoomLevel: 18,
+                  ),
                 ),
+                controller: controller,
+                onMapIsReady: (isReady) {
+                  if (isReady && isLoading) {
+                    setState(() {
+                      isLoading = false;
+                    });
+                  }
+                },
               ),
-              controller: controller,
-              onMapIsReady: (isReady) {
-                if (isReady && isLoading) {
-                  setState(() {
-                    isLoading = false;
-                  });
-                }
-              },
-            ),
     );
   }
 }

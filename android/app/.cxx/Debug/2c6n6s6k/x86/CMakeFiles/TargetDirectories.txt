@@ -1,0 +1,2 @@
+/Users/zarnibwar/StudioProjects/mmbl_update/android/app/.cxx/Debug/2c6n6s6k/x86/CMakeFiles/edit_cache.dir
+/Users/zarnibwar/StudioProjects/mmbl_update/android/app/.cxx/Debug/2c6n6s6k/x86/CMakeFiles/rebuild_cache.dir
