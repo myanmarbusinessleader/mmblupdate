@@ -31,7 +31,7 @@ class BusinessFilterSearchList extends StatelessWidget {
               )
               .where(
                 "name",
-                isLessThan: '${controller.searchValue.value}\uf8ff',
+                isLessThan: '${controller.searchValue.value}',
               )
               .orderBy("name");
         }
@@ -45,7 +45,7 @@ class BusinessFilterSearchList extends StatelessWidget {
               )
               .where(
                 "categoryID",
-                isLessThan: '${controller.category.value}\uf8ff',
+                isLessThan: '${controller.category.value}',
               )
               .orderBy("categoryID");
         }
@@ -54,7 +54,7 @@ class BusinessFilterSearchList extends StatelessWidget {
             controller.state.value != allStates) {
           query = query
               .where("state", isGreaterThanOrEqualTo: controller.state.value)
-              .where("state", isLessThan: '${controller.state.value}\uf8ff')
+              .where("state", isLessThan: '${controller.state.value}')
               .orderBy("state");
         }
 
@@ -67,7 +67,7 @@ class BusinessFilterSearchList extends StatelessWidget {
               )
               .where(
                 "township",
-                isLessThan: '${controller.township.value}\uf8ff',
+                isLessThan: '${controller.township.value}',
               )
               .orderBy("township");
         }
@@ -79,7 +79,6 @@ class BusinessFilterSearchList extends StatelessWidget {
             key: ValueKey(query),
             initialLoader: const CupertinoActivityIndicator(),
             bottomLoader: const CupertinoActivityIndicator(),
-            limit: 10,
             query: query,
             viewType: ViewType.wrap,
             itemBuilder: (context, docs, index) {
@@ -89,27 +88,46 @@ class BusinessFilterSearchList extends StatelessWidget {
                   controller.setSelectedBL(BusinessListing.fromJson(bl));
                   Get.toNamed(businessDetailScreen);
                 },
-                child: Card(
-                  elevation: 10,
-                  color: Colors.white,
-                  child: CachedNetworkImage(
-                    width:
-                        (bl["businessLogo"]["width"] < 300)
-                            ? (bl["businessLogo"]["width"] * 0.61) + 0.0
-                            : bl["businessLogo"]["width"] + 0.0,
-                    //height: bl.businessLogo.height + 0.0,
-                    fit: BoxFit.contain,
-                    progressIndicatorBuilder: (context, url, status) {
-                      return Shimmer.fromColors(
-                        baseColor: Colors.grey.shade300,
-                        highlightColor: Colors.white,
-                        child: Container(color: Colors.white),
-                      );
-                    },
-                    errorWidget: (context, url, whatever) {
-                      return const Text("Image not available");
-                    },
-                    imageUrl: bl["businessLogo"]["imagePath"],
+                child: Center(
+                  child: Card(
+                    elevation: 0,
+                    color: Colors.white,
+                    child: CachedNetworkImage(
+                      width:
+                          (bl["businessLogo"]["width"] < 300)
+                              ? (bl["businessLogo"]["width"] * 0.61) + 0.0
+                              : bl["businessLogo"]["width"] + 0.0,
+                      //height: bl.businessLogo.height + 0.0,
+                      fit: BoxFit.contain,
+                      progressIndicatorBuilder: (context, url, status) {
+                        return Shimmer.fromColors(
+                          baseColor: Colors.grey.shade300,
+                          highlightColor: Colors.white,
+                          child: Container(color: Colors.white),
+                        );
+                      },
+                      errorWidget: (context, url, whatever) {
+                        return Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Center(
+                              child: Image.asset(
+                                'assets/logo.png', // Assuming 'assets/logo.png' is correctly configured in pubspec.yaml
+                                width: 100,
+                                height: 100,
+                              ),
+                            ),
+                            const SizedBox(height: 8),
+                            const Text(
+                              "No Business Data",
+                              textAlign: TextAlign.center,
+                            ),
+                          ],
+                        );
+                      },
+                      imageUrl: bl["businessLogo"]["imagePath"],
+                    ),
                   ),
                 ),
               );

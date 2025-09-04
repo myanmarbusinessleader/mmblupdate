@@ -36,7 +36,7 @@ class FilterFormController extends GetxController {
   void onInit() {
     signInAnonymus();
 
-    listenCategories();
+    // listenCategories();
     /*  listenBusinesses(); */
     super.onInit();
   }

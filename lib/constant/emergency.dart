@@ -22,7 +22,7 @@ final emergencyList = [
   Emergency(
     mmName: "ကြေငြာထည့်ပါ",
     enName: "MBL",
-    image: "assets/logo.jpg",
+    image: "assets/logo.png",
     phone: "09976947648",
   ),
 ];

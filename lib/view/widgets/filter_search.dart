@@ -8,6 +8,49 @@ import '../business_filter_screen.dart';
 import '../filter_screen.dart';
 import '../filter_screen_second.dart';
 
+// Custom animated dialog function
+void showAnimatedDialog(BuildContext context, String title, String message) {
+  showDialog(
+    context: context,
+    builder: (BuildContext context) {
+      return ScaleTransition(
+        scale: Tween<double>(begin: 0.5, end: 1.0).animate(
+          CurvedAnimation(
+            parent: ModalRoute.of(context)!.animation!,
+            curve: Curves.easeInOut,
+          ),
+        ),
+        child: AlertDialog(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(15),
+          ),
+          backgroundColor: Colors.white,
+          title: Text(
+            title,
+            style: const TextStyle(
+              fontWeight: FontWeight.bold,
+              color: Colors.black87,
+            ),
+          ),
+          content: Text(
+            message,
+            style: const TextStyle(color: Colors.black54),
+          ),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.of(context).pop(),
+              child: const Text(
+                "OK",
+                style: TextStyle(color: Colors.black87),
+              ),
+            ),
+          ],
+        ),
+      );
+    },
+  );
+}
+
 class FilterSearch extends StatelessWidget {
   const FilterSearch({super.key});
 
@@ -25,25 +68,23 @@ class FilterSearch extends StatelessWidget {
               value: controller.category.value,
               buttonPressed: () {
                 Get.to(
-                  () => CategoryFilterScreen(
+                      () => CategoryFilterScreen(
                     appBarTitle: "လုပ်ငန်းအမျိုးအစားရွေးချယ်ပါ",
                     hintText: "လုပ်ငန်းအမျိုးအစား",
-
                     onSelected: controller.changeCategory,
                   ),
                 );
-                //Get.toName(filterScreen)
               },
               returnData: (value) => controller.changeCategory(value),
             );
           }),
           Obx(
-            () => FilterRowWidget(
+                () => FilterRowWidget(
               leadingText: "State",
               value: controller.state.value,
               buttonPressed: () {
                 Get.to(
-                  () => FilterScreenSecond(
+                      () => FilterScreenSecond(
                     appBarTitle: "ပြည်နယ်နှင့်တိုင်းဒေသကြီး ရွေးချယ်ပါ",
                     hintText: "ပြည်နယ်နှင့်တိုင်း",
                     search: controller.searchState,
@@ -55,19 +96,20 @@ class FilterSearch extends StatelessWidget {
             ),
           ),
           Obx(
-            () => FilterRowWidget(
+                () => FilterRowWidget(
               leadingText: "Township",
               value: controller.township.value,
               buttonPressed: () {
                 if (controller.state.value == allStates) {
-                  Get.defaultDialog(
-                    title: "Warnning!",
-                    content: const Text("Please choose state first"),
+                  showAnimatedDialog(
+                    context,
+                    "သတိပေးချက် !",
+                    "State ကို အရင်ရွေးပါ",
                   );
                   return;
                 }
                 Get.to(
-                  () => FilterScreenSecond(
+                      () => FilterScreenSecond(
                     appBarTitle: "မြို့နယ်ရွေးချယ်ပါ",
                     hintText: "မြို့နယ်",
                     search: controller.searchTownship,
@@ -78,7 +120,7 @@ class FilterSearch extends StatelessWidget {
               returnData: (value) => controller.changeTownship(value),
             ),
           ),
-          //Search Button
+          // Search Button
           Padding(
             padding: const EdgeInsets.all(15),
             child: SizedBox(
@@ -93,7 +135,7 @@ class FilterSearch extends StatelessWidget {
                 ),
                 onPressed: () {
                   Get.to(
-                    () => BusinessFilterScreen(
+                        () => BusinessFilterScreen(
                       appBarTitle: controller.category.value,
                       hintText: "လုပ်ငန်းအမည်",
                     ),

@@ -21,11 +21,12 @@ class EmergencyView extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 CircleAvatar(
+                  backgroundColor: Colors.white,
                   radius: 50,
                   child: Image.asset(
                     emergency.image,
                     fit: BoxFit.contain,
-                    width: 60,
+                    width: 70,
                   ),
                 ),
                 Column(

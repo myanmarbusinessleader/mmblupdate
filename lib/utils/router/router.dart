@@ -2,6 +2,7 @@ import 'package:get/get.dart';
 import 'package:mmbl/view/business_detail/business_detail_screen.dart';
 
 
+import '../../view/about_us.dart';
 import '../../view/home_screen.dart';
 
 const homeScreen = "/home_screen";

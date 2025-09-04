@@ -52,6 +52,7 @@ class _BusinessFilterScreenState extends State<BusinessFilterScreen> {
           ),
         ),
         body: Column(
+
           children: [
             SearchWidget(size: size, hintText: widget.hintText),
             const BusinessFilterSearchList(),
