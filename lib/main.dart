@@ -1,9 +1,9 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:get/get.dart';
 import 'package:mmbl/firebase_options.dart';
 import 'package:mmbl/utils/router/router.dart';
+import 'package:sizer/sizer.dart';
 import 'controller/filter_form_controller.dart';
 
 void main() async {
@@ -20,17 +20,21 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Get.put(FilterFormController());
-    return GetMaterialApp(
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        primaryColor: Colors.amber,
-        //accentColor: Colors.amber,
-        appBarTheme: const AppBarTheme(color: Colors.amber),
-        cardColor: Colors.white,
-        //buttonColor: Colors.amber,
-      ),
-      initialRoute: homeScreen,
-      getPages: getPages,
+    return Sizer(
+      builder: (context, orientation, screenType) {
+        return GetMaterialApp(
+          debugShowCheckedModeBanner: false,
+          theme: ThemeData(
+            primaryColor: Colors.amber,
+            //accentColor: Colors.amber,
+            appBarTheme: const AppBarTheme(color: Colors.amber),
+            cardColor: Colors.white,
+            //buttonColor: Colors.amber,
+          ),
+          initialRoute: homeScreen,
+          getPages: getPages,
+        );
+      },
     );
   }
 }

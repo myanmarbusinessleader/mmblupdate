@@ -48,73 +48,6 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
     await next();
   }
 
-  void _showAdvertiseDialog(BuildContext context) {
-    showDialog(
-      context: context,
-      builder:
-          (context) => ZoomIn(
-            duration: const Duration(milliseconds: 400),
-            child: AlertDialog(
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(16),
-              ),
-              title: BounceInDown(
-                duration: const Duration(milliseconds: 500),
-                child: const Center(
-                  child: Text(
-                    "Advertise with us",
-                    style: TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.w600,
-                      color: Colors.amber,
-                    ),
-                  ),
-                ),
-              ),
-              content: FadeInUp(
-                duration: const Duration(milliseconds: 600),
-                child: const Text(
-                  "Contact us to place your advertisement!",
-                  style: TextStyle(fontSize: 16, color: Colors.black87),
-                ),
-              ),
-              actions: [
-                ElasticIn(
-                  duration: const Duration(milliseconds: 700),
-                  child: TextButton.icon(
-                    onPressed: () {
-                      makePhoneCall("09976947648");
-                    },
-                    icon: const Icon(Icons.phone, color: Colors.white),
-                    label: const Text(
-                      "Call Now",
-                      style: TextStyle(color: Colors.white),
-                    ),
-                    style: TextButton.styleFrom(
-                      backgroundColor: Colors.amber.shade700,
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 16,
-                        vertical: 8,
-                      ),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(8),
-                      ),
-                    ),
-                  ),
-                ),
-                TextButton(
-                  onPressed: () => Navigator.pop(context),
-                  child: const Text(
-                    "Cancel",
-                    style: TextStyle(color: Colors.grey),
-                  ),
-                ),
-              ],
-            ),
-          ),
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -280,7 +213,9 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                       const SizedBox(height: 6),
                       const Divider(indent: 12, endIndent: 12, height: 24),
 
-                      _buildDrawerSectionLabel("To Advertise and Partner with us"),
+                      _buildDrawerSectionLabel(
+                        "To Advertise and Partner with us",
+                      ),
                       _buildDrawerItem(
                         icon: Icons.phone,
                         title: "Call Us",
@@ -312,7 +247,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
           ],
         ),
       ),
-      floatingActionButton: ZoomIn(
+      /*   floatingActionButton: ZoomIn(
         duration: const Duration(milliseconds: 800),
         child: FloatingActionButton(
           onPressed: () => _showAdvertiseDialog(context),
@@ -326,7 +261,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
             child: const Icon(Icons.phone, color: Colors.white, size: 28),
           ),
         ),
-      ),
+      ), */
     );
   }
 
