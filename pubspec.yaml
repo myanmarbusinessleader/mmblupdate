@@ -76,7 +76,7 @@ dev_dependencies:
 # following page: https://dart.dev/tools/pub/pubspec
 flutter_native_splash:
   color: "#ffffff" # background color
-  image: assets/logo.png # your full logo (square or rectangular)
+  image: assets/splash.png # your full logo (square or rectangular)
   android: true
   ios: true
   web: false
@@ -84,7 +84,7 @@ flutter_native_splash:
   android_gravity: center
   ios_content_mode: scaleAspectFit
   android_12:
-    image: assets/logo.png
+    image: assets/splash.png
     icon_background_color: "#ffffff"
 flutter_icons:
   android: true
