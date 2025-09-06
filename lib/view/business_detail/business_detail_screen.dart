@@ -41,6 +41,7 @@ class BusinessDetailScreen extends StatelessWidget {
               ),
           ),
         body: TabBarView(
+          physics: NeverScrollableScrollPhysics(),
           children: [
             BusinessProfile(bL: bL),
             //About Us
