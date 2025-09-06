@@ -51,7 +51,10 @@ class _BusinessLocationMapState extends State<BusinessLocationMap> {
         children: [
           GoogleMap(
             mapType: MapType.hybrid,
-            initialCameraPosition: CameraPosition(target: _markerPosition, zoom: _currentZoom),
+            initialCameraPosition: CameraPosition(
+              target: _markerPosition,
+              zoom: _currentZoom,
+            ),
             markers: {
               Marker(
                 markerId: const MarkerId("business_location"),
@@ -68,7 +71,10 @@ class _BusinessLocationMapState extends State<BusinessLocationMap> {
             onMapCreated: (GoogleMapController controller) {
               _controller.complete(controller);
             },
+            myLocationButtonEnabled: false, // 👈 disables the icon
+            myLocationEnabled: false,       // 👈 optional: prevents showing blue dot
           ),
+
           Positioned(
             right: 10,
             top: 10,

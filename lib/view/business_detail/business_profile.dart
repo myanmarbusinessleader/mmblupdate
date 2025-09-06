@@ -23,15 +23,22 @@ class BusinessProfile extends StatelessWidget {
           //Address
           Row(
             children: [
-              const Icon(Icons.home,color: Colors.grey,size: 35),
+              Padding(
+                padding: const EdgeInsets.all(10),
+                child: const Icon(Icons.location_on_outlined,color: Colors.grey,size: 35),
+              ),
               //Name
               Expanded(child: Text(bL.businessAddress, style: Theme.of(context).textTheme.titleMedium,))
             ],
           ),
           //Phone
+
           Row(
             children: [
-              const Icon(FontAwesomeIcons.mobile,color: Colors.grey,size: 35),
+              Padding(
+                padding: const EdgeInsets.all(10),
+                child: const Icon(Icons.phone_outlined,color: Colors.grey,size: 30),
+              ),
               //Name
               Text(bL.contactPhoneNumer,
               style: Theme.of(context).textTheme.titleMedium,)
